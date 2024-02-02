@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {
@@ -5,6 +6,19 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    final firBase = Firebase.initializeApp();
+    return Scaffold(
+      body: FutureBuilder(
+          future: firBase,
+          builder: (context, AsyncSnapshot snapShot) {
+            if (!snapShot.hasData) {
+              return CircularProgressIndicator();
+            } else if (snapShot.hasError) {
+              return Text('error');
+            } else {
+              return Text("bog'landi");
+            }
+          }),
+    );
   }
 }
