@@ -1,4 +1,4 @@
-import 'package:firebase_example_app/ui/page/login/bloc/login_bloc.dart';
+import 'package:firebase_example_app/screen/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
