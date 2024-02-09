@@ -82,7 +82,7 @@ class WTextField extends StatelessWidget {
     return TextFormField(
       decoration: InputDecoration(
         hintText: '   email......',
-        hintStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
+        hintStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
         contentPadding: EdgeInsets.all(1),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),

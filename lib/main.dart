@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_example_app/firebase_options.dart';
 import 'package:firebase_example_app/screen/home.dart';
+import 'package:firebase_example_app/screen/register/register_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  HomeScreen(),
+      home:  RegisterScreen(),
     );
   }
 }

@@ -6,3 +6,7 @@ sealed class RegisterEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+class InputPhoneEvent extends RegisterEvent{}
+class InputEmailEvent extends RegisterEvent{}
+class InputPasswordEvent extends RegisterEvent{}
+class InputConfarmPasswordEvent extends RegisterEvent{}
