@@ -57,7 +57,7 @@ class LoginPhone extends StatelessWidget {
                   child: const Center(child: Text('Register')),
                 ),
               ),
-              SizedBox(
+           const    SizedBox(
                 height: 12,
               ),
             ],
@@ -67,8 +67,9 @@ class LoginPhone extends StatelessWidget {
 
   Future registerPhone(String email, String password) async {
     try {
+      print('object');
       await authUser.verifyPhoneNumber(
-          phoneNumber: '+998901112233',
+          phoneNumber: '+998932382939',
           verificationCompleted: (value) {
             print('verification is Completed');
           },
@@ -80,7 +81,7 @@ class LoginPhone extends StatelessWidget {
             String code = '112233';
             PhoneAuthCredential phoneAuth = PhoneAuthProvider.credential(
                 verificationId: verificationId, smsCode: code);
-                //profile ichidan parolni almashtirish kerak 
+            //profile ichidan parolni almashtirish kerak
             // await authUser.confirmPasswordReset(code: code, newPassword: newPassword)
             await authUser.signInWithCredential(phoneAuth);
           },

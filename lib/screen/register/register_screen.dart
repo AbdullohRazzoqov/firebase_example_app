@@ -6,6 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
   PageController controller = PageController();
+  TextEditingController inputEmail = TextEditingController();
+  TextEditingController inputPassword = TextEditingController();
+  TextEditingController inputCanfirmationPassword = TextEditingController();
+  TextEditingController inputPhone = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -70,15 +75,21 @@ class RegisterScreen extends StatelessWidget {
                             const SizedBox(
                               height: 24,
                             ),
-                            const WTextField(),
+                            WTextField(text: 'Phone', controller: inputPhone),
                             const SizedBox(
                               height: 12,
                             ),
-                            const WTextField(),
+                            WTextField(
+                              text: 'Passowrd',
+                              controller: inputPassword,
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
-                            const WTextField(),
+                            WTextField(
+                              text: 'CanfirmationPassword',
+                              controller: inputCanfirmationPassword,
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
@@ -145,15 +156,24 @@ class RegisterScreen extends StatelessWidget {
                             const SizedBox(
                               height: 24,
                             ),
-                            const WTextField(),
+                            WTextField(
+                              text: 'Email',
+                              controller: inputEmail,
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
-                            const WTextField(),
+                            WTextField(
+                              text: 'Password',
+                              controller: inputPassword,
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
-                            const WTextField(),
+                            WTextField(
+                              text: 'Confirmation Password',
+                              controller: inputCanfirmationPassword,
+                            ),
                             const SizedBox(
                               height: 12,
                             ),

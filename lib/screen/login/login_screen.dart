@@ -39,11 +39,11 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(
                       height: 24,
                     ),
-                    const WTextField(),
-                    const SizedBox(
+                    // WTextField(),
+                    SizedBox(
                       height: 12,
                     ),
-                    const WTextField(),
+                    //   WTextField(),
                     const SizedBox(
                       height: 12,
                     ),
@@ -73,20 +73,24 @@ class LoginScreen extends StatelessWidget {
 }
 
 class WTextField extends StatelessWidget {
-  const WTextField({
+  WTextField({
     super.key,
+    required this.text,
+    required this.controller,
   });
+  String text;
+  TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
-        hintText: '   email......',
-        hintStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
-        contentPadding: EdgeInsets.all(1),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(24),
-        ),
+        contentPadding: const EdgeInsets.all(6),
+        labelText: text,
+        hintStyle:
+            const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
+        border: const OutlineInputBorder(),
       ),
     );
   }
