@@ -1,19 +1,29 @@
-importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js");
+importScripts('https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js');
 
-firebase.initializeApp({
-    apiKey: "AIzaSyD1K7kyZpROOf5JRoV4AZbciay6ONcSRrw",
-    authDomain: "pms-app-4c367.firebaseapp.com",
-    projectId: "pms-app-4c367",
-    storageBucket: "pms-app-4c367.appspot.com",
-    messagingSenderId: "646624453056",
-    appId: "1:646624453056:web:0506028af88e7b44512825",
-    measurementId: "G-N43412GNSC"
-});
+   /*Update with yours config*/
+  const firebaseConfig = {
+    apiKey: "AIzaSyAEf3RyPjBopBL8BoUuYORtzU6G6aGrVxs",
+    authDomain: "fir-example-9766e.firebaseapp.com",
+    projectId: "fir-example-9766e",
+    storageBucket: "fir-example-9766e.appspot.com",
+    messagingSenderId: "476972303494",
+    appId: "1:476972303494:web:e2159e1fa327f5b8247d07",
+    measurementId: "G-C0N4731CQQ"
+ };
+  firebase.initializeApp(firebaseConfig);
+  const messaging = firebase.messaging();
 
-const messaging = firebase.messaging();
+  /*messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);*/
+  messaging.onBackgroundMessage(function(payload) {
+    console.log('Received background message ', payload);
 
-// Optional:
-messaging.onBackgroundMessage((message) => {
-  console.log("onBackgroundMessage", message);
-});
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+      body: payload.notification.body,
+    };
+
+    self.registration.showNotification(notificationTitle,
+      notificationOptions);
+  });

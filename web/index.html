@@ -31,7 +31,6 @@
 
   <title>firebase_example_app</title>
   <link rel="manifest" href="manifest.json">
-  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js"></script>
 
   <script>
     // The value below is injected by flutter build, do not touch.
@@ -39,40 +38,22 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
-  <!-- <script src="main.dart.js" type="application/javascript"></script> -->
 </head>
 <body>
-  <!-- <script>
-    window.flutterfire_ignore_scripts = ['analytics', 'firestore'];
-  </script> -->
   <script>
-    // if ('serviceWorker' in navigator) {
-          // Service workers are supported. Use them.
-          window.addEventListener('load', function () {
-            // ADD THIS LINE
-            navigator.serviceWorker.register('/firebase-messaging-sw.js');
-
-            // Wait for registration to finish before dropping the <script> tag.
-            // Otherwise, the browser will load the script multiple times,
-            // potentially different versions.
-            var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-
-            //  ...
-          });
-      // }
-    // window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function(ev) {
       // Download main.dart.js
-      // _flutter.loader.loadEntrypoint({
-      //   serviceWorker: {
-      //     serviceWorkerVersion: serviceWorkerVersion,
-      //   },
-      //   onEntrypointLoaded: function(engineInitializer) {
-      //     engineInitializer.initializeEngine().then(function(appRunner) {
-      //       appRunner.runApp();
-      //     });
-      //   }
-      // });
-    // });
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>

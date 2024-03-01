@@ -11,23 +11,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
-        options: FirebaseOptions(
-      apiKey: "AIzaSyD1K7kyZpROOf5JRoV4AZbciay6ONcSRrw",
-      messagingSenderId: "646624453056",
-      appId: "1:646624453056:web:0506028af88e7b44512825",
-      projectId: "pms-app-4c367",
-      storageBucket: "pms-app-4c367.appspot.com",
+        options: const FirebaseOptions(
+      apiKey: "AIzaSyAEf3RyPjBopBL8BoUuYORtzU6G6aGrVxs",
+      projectId: "fir-example-9766e",
+      storageBucket: "fir-example-9766e.appspot.com",
+      messagingSenderId: "476972303494",
+      appId: "1:476972303494:web:e2159e1fa327f5b8247d07",
     ));
   } else {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }
-
-  FirebaseMessaging.instance.getToken().then((value) {
-    print('start');
-    print(value);
-  });
 
   runApp(const MyApp());
 }
@@ -56,32 +51,25 @@ class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () async {
-        FirebaseMessaging messaging = FirebaseMessaging.instance;
+        final notificationSettings = await FirebaseMessaging.instance
+            .requestPermission(provisional: true);
 
-        NotificationSettings settings = await messaging.requestPermission(
-          alert: true,
-          announcement: false,
-          badge: true,
-          carPlay: false,
-          criticalAlert: false,
-          provisional: false,
-          sound: true,
-        );
+        final apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+        if (apnsToken != null) {}
 
-        print('User granted permission: ${settings.authorizationStatus}');
+        final fcmToken = await FirebaseMessaging.instance.getToken(
+            vapidKey:
+                "BMW2pne_g6yC7rMrhZumWRWgIusS2b2EBQjKF5-ol9FXHlDVw6LgmU5iPhX4c--pWZXtp9kPlZEN-zdvD6B5a2M");
+        print('fcmToken: $fcmToken');
 
-        FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-          print('Got a message whilst in the foreground!');
-          print('Message data: ${message.data}');
+        FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
+          // TODO: If necessary send token to application server.
 
-          if (message.notification != null) {
-            print(
-                'Message also contained a notification: ${message.notification}');
-          }
+          // Note: This callback is fired at each app startup and whenever a new
+          // token is generated.
+        }).onError((err) {
+          // Error getting token.
         });
-
-        final a = await FirebaseMessaging.instance.getAPNSToken();
-        print('token: $a');
       }),
     );
   }
